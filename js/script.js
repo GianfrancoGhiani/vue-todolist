@@ -29,19 +29,19 @@ const app = Vue.createApp({
     data() {
         return {
             list: [{
-                    text: 'pasta',
+                    text: 'cpu',
                     done: false
                 },
                 {
-                    text: 'pane',
+                    text: 'scheda madre',
                     done: false
                 },
                 {
-                    text: 'pizza',
+                    text: 'gpu',
                     done: true
                 },
                 {
-                    text: 'pomodoro',
+                    text: 'RAM',
                     done: false
                 }                     
             ],
@@ -50,35 +50,44 @@ const app = Vue.createApp({
                 done: false
             },
             elemToAdd: '',
-            // cloneObj:'',
+            show: false,
+            error: 'Si accettano nomi di componenti con un minimo di tre lettere'
         }
     },
     methods: {
         //ctrl action of done key
         ifTrue(done){
             if (done){
-                return 'text-decoration-line-through'
+                return 'text-decoration-line-through sel'
             }
         },
         //take the index and, at this splice, delete at this position 1 elem
         deleteElement(index){
             this.list.splice(index,1);
-            console.log(this.list)
         },
         // take the input text value and place it as the value of a "newObj.text"
         addObjBot(toAdd){
-            let cloneObj = Object.assign({}, this.newObj);
-            cloneObj.text = toAdd;
-            this.elemToAdd='';
-            this.list.push(cloneObj);
+            if(toAdd.length > 3){
+                let cloneObj = Object.assign({}, this.newObj);
+                cloneObj.text = toAdd;
+                this.elemToAdd='';
+                this.list.push(cloneObj);
+            } else{
+                this.show = true;
+            }
         },
         // take the input text value and place it as the value of a "newObj.text"
         addObjTop(toAdd){
-            let cloneObj = Object.assign({}, this.newObj);
-            cloneObj.text = toAdd;
-            this.elemToAdd='';
-            this.list.unshift(cloneObj);
-        }
+            if(toAdd.length > 3){
+                let cloneObj = Object.assign({}, this.newObj);
+                cloneObj.text = toAdd;
+                this.elemToAdd='';
+                this.list.unshift(cloneObj);
+            } else{
+                this.show = true;
+            }
+        },
+        
     },
 })
 app.mount('#app')

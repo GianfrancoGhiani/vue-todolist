@@ -11,17 +11,27 @@
 </head>
 <body>
     <div id="app">
-        <input type="text" v-model="elemToAdd" @keyup.enter="addObjBot(elemToAdd)">
-        <button @click="addObjBot(elemToAdd)">Aggiungi in coda alla lista</button>
-        <button @click="addObjTop(elemToAdd)">Aggiungi in cima alla lista</button>
-        <ul>
+        <div class="w-50 m-auto pt-5">
+            <input type="text" v-model="elemToAdd" @keyup.enter="addObjBot(elemToAdd)" @click="show = false" class="w-75 rounded-2 px-1">
+            <div class="d-flex align-items-center justify-content-end my-3">
+                <button @click="addObjBot(elemToAdd)" class="mine-btn white btn border-1 rounded-2 mx-2">
+                    Aggiungi in coda alla lista
+                </button>
+                <button @click="addObjTop(elemToAdd)" class="mine-btn white btn border-1 rounded-2 mx-2">
+                    Aggiungi in cima alla lista
+                </button>
+            </div>
+            <div v-if="show" class="error fw-bold white rounded-1 py-2 px-4">{{error}}</div>
+        </div>
+        <ul class="w-50 m-auto p-0" v-if="list.length > 0">
             <!-- for every elem in list  -> create a li -->
-            <li v-for="(obj, i) in list" :key="i" >
+            <li v-for="(obj, i) in list" :key="i" class="d-flex align-items-center justify-content-between white">
                 <!-- on click revert done's boolean value -->
-                <span @click="obj.done = !obj.done" :class="ifTrue(obj.done)">{{obj.text}}</span>
-                <button @click="deleteElement(i)">X</button>
+                <span @click="obj.done = !obj.done" :class="ifTrue(obj.done)" class="text-capitalize">{{obj.text}}</span>
+                <button @click="deleteElement(i)" class="btn fw-bold white">X</button>
             </li>
         </ul>
+        <div v-else class="fw-bold white w-50 m-auto">La tua lista di componenti &egrave; vuota</div>
     </div>
 
 
