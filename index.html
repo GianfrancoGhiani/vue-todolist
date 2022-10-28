@@ -11,17 +11,23 @@
 </head>
 <body>
     <div id="app">
+        <input type="text" v-model="elemToAdd" @keyup.enter="addObjBot(elemToAdd)">
+        <button @click="addObjBot(elemToAdd)">Aggiungi in coda alla lista</button>
+        <button @click="addObjTop(elemToAdd)">Aggiungi in cima alla lista</button>
         <ul>
             <!-- for every elem in list  -> create a li -->
-            <li v-for="obj in list">
-                <span :class="ifTrue(obj.done)">{{obj.text}}</span>
-                <button>X</button>
+            <li v-for="(obj, i) in list" :key="i" >
+                <!-- on click revert done's boolean value -->
+                <span @click="obj.done = !obj.done" :class="ifTrue(obj.done)">{{obj.text}}</span>
+                <button @click="deleteElement(i)">X</button>
             </li>
         </ul>
     </div>
 
 
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="./js/script.js"></script>
+    <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.2.41/vue.cjs.js" integrity="sha512-7m9S6PzUY75+/V5GIWRP19NFD1MgYpzbmbbSfUMnj8PMtkOj/XZs4BmxXvXku2litdO4qDrVhGtFkk2MVWlpcg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.2.41/dist/vue.global.min.js"></script>
+    <script src="./js/script.js" type="module"></script>
 </body>
 </html>
