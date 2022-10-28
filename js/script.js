@@ -25,7 +25,34 @@ const {createApp} = Vue;
 const app = Vue.createApp({
     data() {
         return {
-            
+            list: [{
+                    text: 'pasta',
+                    done: false
+                },
+                {
+                    text: 'pane',
+                    done: false
+                },
+                {
+                    text: 'pizza',
+                    done: true
+                },
+                {
+                    text: 'pomodoro',
+                    done: false
+                },
+                                        
+            ]
         }
     },
+    methods: {
+        //ctrl action of done key
+        ifTrue(done){
+            if (done){
+                return 'text-decoration-line-through'
+            }
+        },
+        
+    },
 })
+app.mount('#app')

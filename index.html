@@ -10,7 +10,15 @@
     <title>ToDo</title>
 </head>
 <body>
-    
+    <div id="app">
+        <ul>
+            <!-- for every elem in list  -> create a li -->
+            <li v-for="obj in list">
+                <span :class="ifTrue(obj.done)">{{obj.text}}</span>
+                <button>X</button>
+            </li>
+        </ul>
+    </div>
 
 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
